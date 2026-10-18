@@ -1,0 +1,68 @@
+
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>המוצרים שלנו | Sweet Shop</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="top">
+  <nav class="nav">
+    <a class="logo" href="index.html"><span>🧁</span> Sweet Shop</a>
+    <a href="index.html">בית</a>
+    <a href="products.html">מוצרים</a>
+    <a href="cart.html">🛒 סל (<span id="cart-count">0</span>)</a>
+    <span id="user-nav" style="display:flex;gap:12px;align-items:center;flex-wrap:wrap"></span>
+  </nav>
+</header>
+
+<main class="container">
+
+  <section class="catalog-header">
+    <p class="home-kicker">OUR SWEET COLLECTION</p>
+    <h1>הקינוחים שלנו 🧁</h1>
+    <p>בחרו את הקינוחים והמארזים האהובים עליכם.</p>
+  </section>
+
+  <div id="notice" class="notice"></div>
+
+  <div class="toolbar">
+    <select id="sort" aria-label="מיון מוצרים">
+      <option value="name">מיון לפי שם</option>
+      <option value="priceAsc">מחיר: מהנמוך לגבוה</option>
+      <option value="priceDesc">מחיר: מהגבוה לנמוך</option>
+    </select>
+
+    <select id="category" aria-label="סינון קטגוריה">
+      <option value="all">כל הקטגוריות</option>
+      <option value="עוגות">עוגות</option>
+      <option value="קאפקייקס">קאפקייקס</option>
+      <option value="עוגיות">עוגיות</option>
+      <option value="מאפים">מאפים</option>
+      <option value="קינוחי כוסות">קינוחי כוסות</option>
+      <option value="שוקולדים">שוקולדים</option>
+      <option value="מארזים">מארזים</option>
+    </select>
+  </div>
+
+  <section class="products" id="product-list">
+    טוען מוצרים...
+  </section>
+
+  <div class="widgets">
+    <div id="weather">🌤 טוען מזג אוויר...</div>
+    <div id="currency">💱 טוען שער דולר...</div>
+  </div>
+
+</main>
+
+<footer class="footer">🧁 Sweet Shop · Made with love</footer>
+
+<script src="js/common.js"></script>
+<script src="js/shop.js"></script>
+
+</body>
+</html>

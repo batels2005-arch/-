@@ -1,0 +1,219 @@
+
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>סל קניות ותשלום | Sweet Shop</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<div class="shipping-banner">
+  🎁 בקנייה של ₪300 ומעלה נהנים ממשלוח חינם!
+</div>
+
+<header class="top">
+  <nav class="nav">
+    <a class="logo" href="index.html">
+      <span>🧁</span> Sweet Shop
+    </a>
+
+    <a href="index.html">בית</a>
+    <a href="products.html">מוצרים</a>
+    <a href="cart.html">
+      🛒 סל (<span id="cart-count">0</span>)
+    </a>
+
+    <span id="user-nav"
+      style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+    </span>
+  </nav>
+</header>
+
+<main class="container">
+
+  <section class="checkout-header">
+    <p class="home-kicker">YOUR SWEET ORDER</p>
+    <h1>🛒 סל הקניות שלי</h1>
+    <p>עוד רגע והמתוקים בדרך אליכם!</p>
+  </section>
+
+  <div id="notice" class="notice"></div>
+
+  <section class="panel">
+    <h3>🧁 המוצרים שבחרתם</h3>
+    <div id="cart-list">טוען מוצרים...</div>
+  </section>
+
+  <section class="panel checkout-summary">
+    <h3>סיכום הזמנה</h3>
+
+    <div class="summary-line">
+      <span>סכום המוצרים</span>
+      <strong id="products-total">₪0</strong>
+    </div>
+
+    <div class="summary-line">
+      <span>דמי משלוח</span>
+      <strong id="shipping-cost">₪30</strong>
+    </div>
+
+    <div id="shipping-message"
+         class="shipping-progress">
+      בקנייה של ₪300 ומעלה המשלוח חינם!
+    </div>
+
+    <div class="summary-line summary-final">
+      <span>סה״כ לתשלום</span>
+      <strong id="total">סה״כ: ₪0</strong>
+    </div>
+
+    <div class="checkout-actions">
+      <button id="checkout" class="btn">
+        המשך לתשלום ←
+      </button>
+
+      <a href="products.html" class="btn alt">
+        המשך קנייה
+      </a>
+    </div>
+  </section>
+
+  <section class="panel payment-panel"
+           id="payment-section" hidden>
+
+    <h2>💗 השלמת הזמנה</h2>
+    <p class="muted">
+      מלאו את פרטי המשלוח ובחרו אמצעי תשלום.
+    </p>
+
+    <form id="payment-form">
+
+      <h3>🚚 פרטי משלוח</h3>
+
+      <div class="checkout-fields">
+        <div class="field">
+          <label for="fullName">שם מלא</label>
+          <input id="fullName"
+                 name="fullName"
+                 required
+                 minlength="2"
+                 maxlength="100"
+                 autocomplete="name">
+        </div>
+
+        <div class="field">
+          <label for="phone">טלפון</label>
+          <input id="phone"
+                 name="phone"
+                 type="tel"
+                 required
+                 pattern="0[0-9]{8,9}"
+                 placeholder="0501234567"
+                 autocomplete="tel">
+        </div>
+
+        <div class="field">
+          <label for="city">עיר</label>
+          <input id="city"
+                 name="city"
+                 required
+                 placeholder="לדוגמה: נתניה">
+        </div>
+
+        <div class="field">
+          <label for="street">רחוב</label>
+          <input id="street"
+                 name="street"
+                 required
+                 placeholder="שם הרחוב">
+        </div>
+
+        <div class="field">
+          <label for="houseNumber">מספר בית</label>
+          <input id="houseNumber"
+                 name="houseNumber"
+                 required
+                 placeholder="מספר בית">
+        </div>
+
+        <div class="field">
+          <label for="apartment">דירה (לא חובה)</label>
+          <input id="apartment"
+                 name="apartment"
+                 placeholder="מספר דירה">
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="notes">הערות לשליח (לא חובה)</label>
+        <textarea id="notes"
+                  name="notes"
+                  rows="3"
+                  placeholder="קומה, קוד כניסה או הנחיות מיוחדות"></textarea>
+      </div>
+
+      <!-- נשמר גם השדה שה-JS הקיים משתמש בו -->
+      <input type="hidden" id="address" name="address">
+
+      <h3>💳 אמצעי תשלום</h3>
+
+      <div class="payment-methods">
+        <label class="payment-choice">
+          <input type="radio"
+                 name="paymentMethod"
+                 value="cash"
+                 checked>
+          💵 מזומן בעת המסירה
+        </label>
+
+        <label class="payment-choice">
+          <input type="radio"
+                 name="paymentMethod"
+                 value="card_demo">
+          💳 כרטיס אשראי — הדמיה בלבד
+        </label>
+      </div>
+
+      <p class="muted">
+        זהו פרויקט לימודי. לא מתבצע חיוב אמיתי,
+        ואין להזין פרטי כרטיס אשראי.
+      </p>
+
+      <button type="submit" class="btn">
+        אישור הזמנה
+      </button>
+
+    </form>
+  </section>
+
+</main>
+
+<footer class="footer">
+  🧁 Sweet Shop · Made with love
+</footer>
+
+<!-- חלונית התראות לסל -->
+<div id="cart-popup" class="cart-popup-overlay" hidden>
+  <div class="cart-popup-box"
+       role="dialog"
+       aria-modal="true"
+       aria-labelledby="cart-popup-title">
+
+    <div id="cart-popup-icon" class="cart-popup-icon">🛒</div>
+
+    <h2 id="cart-popup-title"></h2>
+
+    <p id="cart-popup-message"></p>
+
+    <div id="cart-popup-actions" class="cart-popup-actions"></div>
+  </div>
+</div>
+
+<script src="js/common.js"></script>
+<script src="js/cart.js"></script>
+
+</body>
+</html>

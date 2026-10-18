@@ -1,0 +1,64 @@
+
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ההזמנות שלי | Sweet Shop</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <header class="top">
+    <nav class="nav">
+      <a class="logo" href="index.html">
+        <span>🧁</span> Sweet Shop
+      </a>
+
+      <a href="index.html">בית</a>
+      <a href="products.html">מוצרים</a>
+
+      <a href="cart.html">
+        🛒 סל (<span id="cart-count">0</span>)
+      </a>
+
+      <span
+        id="user-nav"
+        style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+      </span>
+    </nav>
+  </header>
+
+  <main class="container">
+
+    <section class="orders-page-header">
+      <p class="home-kicker">MY SWEET ORDERS</p>
+      <h1>📦 ההזמנות שלי</h1>
+      <p>כל ההזמנות שלך והעדכונים עליהן במקום אחד</p>
+    </section>
+
+    <div id="notice" class="notice"></div>
+
+    <!-- כרטיסי ההזמנות יופיעו כאן -->
+    <section id="orders" aria-live="polite">
+      טוען הזמנות...
+    </section>
+
+    <div class="orders-bottom-action">
+      <a href="products.html" class="btn">
+        🧁 המשך קנייה
+      </a>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    🧁 Sweet Shop · Made with love
+  </footer>
+
+  <script src="js/common.js"></script>
+  <script src="js/orders.js"></script>
+
+</body>
+</html>
