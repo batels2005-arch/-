@@ -1,1 +1,132 @@
-<!doctype html><html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>דשבורד מנהל | Sweet Shop</title><link rel="stylesheet" href="css/style.css"></head><body><header class="top"><nav class="nav"><a class="logo" href="index.html"><span>🧁</span> Sweet Shop</a><a href="index.html">בית</a><a href="products.html">מוצרים</a><a href="cart.html">🛒 סל (<span id="cart-count">0</span>)</a><span id="user-nav" style="display:flex;gap:12px;align-items:center;flex-wrap:wrap"></span></nav></header><main class="container"><h2>📊 דשבורד מנהל</h2><div id="notice" class="notice"></div><section class="stats" id="stats"></section><section class="charts"><div class="panel"><h3>הזמנות לפי סטטוס</h3><div class="chartbox"><canvas id="status-chart"></canvas></div></div><div class="panel"><h3>מכירות לפי קטגוריה</h3><div class="chartbox"><canvas id="category-chart"></canvas></div></div></section><section class="panel"><h3>ניהול מוצרים – הוספה / עריכה</h3><form id="product-form" class="admin-form"><input type="hidden" name="id"><label class="field">שם<input name="name" required></label><label class="field">מחיר<input name="price" type="number" min="0" required></label><label class="field">קטגוריה<select name="category"><option>עוגות</option><option>קאפקייקס</option><option>עוגיות</option></select></label><label class="field">מלאי<input name="inStock" type="number" min="0" required></label><label class="field">תיאור<input name="description"></label><label class="field">תמונה/סמל<select name="image"><option value="chocolate">עוגה</option><option value="cheese">גבינה</option><option value="cupcake">קאפקייקס</option><option value="cookies">עוגיות</option><option value="strawberry">תותים</option><option value="macaron">מקרונים</option></select></label><button class="btn">שמירת מוצר</button><button type="reset" class="btn alt">ניקוי</button></form><div id="products-table"></div></section><section class="panel"><h3>ניהול הזמנות</h3><div id="admin-orders"></div></section></main><footer class="footer">🧁 Sweet Shop · פרויקט גמר בפיתוח אפליקציות אינטרנטיות</footer><script src="js/common.js"></script><script src="https://cdn.jsdelivr.net/npm/chart.js"></script><script src="js/admin.js"></script></body></html>
+
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>דשבורד מנהל | Sweet Shop</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="top">
+  <nav class="nav">
+    <a class="logo" href="index.html">
+      <span>🧁</span> Sweet Shop
+    </a>
+    <a href="index.html">בית</a>
+    <a href="products.html">מוצרים</a>
+    <a href="cart.html">
+      🛒 סל (<span id="cart-count">0</span>)
+    </a>
+    <span
+      id="user-nav"
+      style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+    </span>
+  </nav>
+</header>
+
+<main class="container">
+
+  <h2>📊 דשבורד מנהל</h2>
+
+  <div id="notice" class="notice"></div>
+
+  <section class="stats" id="stats"></section>
+
+  <section class="charts">
+
+    <div class="panel">
+      <h3>הזמנות לפי סטטוס</h3>
+      <div class="chartbox">
+        <canvas id="status-chart"></canvas>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3>מכירות לפי קטגוריה</h3>
+      <div class="chartbox">
+        <canvas id="category-chart"></canvas>
+      </div>
+    </div>
+
+  </section>
+
+  <section class="panel">
+
+    <h3>ניהול מוצרים – הוספה / עריכה</h3>
+
+    <form id="product-form" class="admin-form">
+
+      <input type="hidden" name="id">
+
+      <label class="field">
+        שם
+        <input name="name" required>
+      </label>
+
+      <label class="field">
+        מחיר
+        <input name="price" type="number" min="0" required>
+      </label>
+
+      <label class="field">
+        קטגוריה
+        <select name="category">
+          <option>עוגות</option>
+          <option>קאפקייקס</option>
+          <option>עוגיות</option>
+        </select>
+      </label>
+
+      <label class="field">
+        מלאי
+        <input name="inStock" type="number" min="0" required>
+      </label>
+
+      <label class="field">
+        תיאור
+        <input name="description">
+      </label>
+
+      <!-- שדה חדש לתמונה אמיתית -->
+      <label class="field">
+        תמונת מוצר (קישור לתמונה)
+        <input
+          type="url"
+          name="image"
+          placeholder="https://example.com/cake.jpg"
+        >
+      </label>
+
+      <button class="btn" type="submit">
+        שמירת מוצר
+      </button>
+
+      <button type="reset" class="btn alt">
+        ניקוי
+      </button>
+
+    </form>
+
+    <div id="products-table"></div>
+
+  </section>
+
+  <section class="panel">
+    <h3>ניהול הזמנות</h3>
+    <div id="admin-orders"></div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  🧁 Sweet Shop · פרויקט גמר בפיתוח אפליקציות אינטרנטיות
+</footer>
+
+<script src="js/common.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="js/admin.js"></script>
+
+</body>
+</html>

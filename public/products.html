@@ -6,30 +6,104 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>המוצרים שלנו | Sweet Shop</title>
   <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    /* הבאנר החדש של הקינוחים */
+    .sweet-banner {
+      position: relative;
+      width: 100%;
+      margin: 30px auto 36px;
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: 0 15px 40px rgba(117, 50, 78, 0.12);
+      background: #fbe8ed;
+    }
+
+    .sweet-banner img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    /* אזור לחיץ מעל הכפתור שמצויר בתמונה */
+    .sweet-banner-link {
+      position: absolute;
+      left: 4.5%;
+      top: 67%;
+      width: 25%;
+      height: 17%;
+      z-index: 2;
+      border-radius: 50px;
+      cursor: pointer;
+    }
+
+    .sweet-banner-link:focus-visible {
+      outline: 3px solid #b43e70;
+      outline-offset: 3px;
+    }
+
+    @media (max-width: 700px) {
+      .sweet-banner {
+        margin: 18px auto 24px;
+        border-radius: 18px;
+      }
+
+      .sweet-banner-link {
+        left: 4%;
+        top: 67%;
+        width: 28%;
+        height: 18%;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
 <header class="top">
   <nav class="nav">
-    <a class="logo" href="index.html"><span>🧁</span> Sweet Shop</a>
+    <a class="logo" href="index.html">
+      <span>🧁</span> Sweet Shop
+    </a>
+
     <a href="index.html">בית</a>
     <a href="products.html">מוצרים</a>
-    <a href="cart.html">🛒 סל (<span id="cart-count">0</span>)</a>
-    <span id="user-nav" style="display:flex;gap:12px;align-items:center;flex-wrap:wrap"></span>
+
+    <a href="cart.html">
+      🛒 סל (<span id="cart-count">0</span>)
+    </a>
+
+    <span
+      id="user-nav"
+      style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+    </span>
   </nav>
 </header>
 
 <main class="container">
 
-  <section class="catalog-header">
-    <p class="home-kicker">OUR SWEET COLLECTION</p>
-    <h1>הקינוחים שלנו 🧁</h1>
-    <p>בחרו את הקינוחים והמארזים האהובים עליכם.</p>
+  <!-- הבאנר המעוצב החדש -->
+  <section class="sweet-banner" aria-label="הקינוחים שלנו">
+
+    <img
+      src="images/desserts-banner.png"
+      alt="הקינוחים שלנו - עוגות, קאפקייקס ומקרונים"
+    >
+
+    <a
+      class="sweet-banner-link"
+      href="#product-list"
+      aria-label="לכל הקינוחים שלנו"
+      title="לכל הקינוחים שלנו">
+    </a>
+
   </section>
 
   <div id="notice" class="notice"></div>
 
+  <!-- סינון ומיון -->
   <div class="toolbar">
+
     <select id="sort" aria-label="מיון מוצרים">
       <option value="name">מיון לפי שם</option>
       <option value="priceAsc">מחיר: מהנמוך לגבוה</option>
@@ -46,12 +120,15 @@
       <option value="שוקולדים">שוקולדים</option>
       <option value="מארזים">מארזים</option>
     </select>
+
   </div>
 
+  <!-- רשימת המוצרים -->
   <section class="products" id="product-list">
     טוען מוצרים...
   </section>
 
+  <!-- מזג אוויר והמרת מטבע -->
   <div class="widgets">
     <div id="weather">🌤 טוען מזג אוויר...</div>
     <div id="currency">💱 טוען שער דולר...</div>
@@ -59,7 +136,9 @@
 
 </main>
 
-<footer class="footer">🧁 Sweet Shop · Made with love</footer>
+<footer class="footer">
+  🧁 Sweet Shop · Made with love
+</footer>
 
 <script src="js/common.js"></script>
 <script src="js/shop.js"></script>

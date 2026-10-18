@@ -1,35 +1,124 @@
 
 <!doctype html>
 <html lang="he" dir="rtl">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
+
   <title>Sweet Shop | דף הבית</title>
+
   <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    /* =====================================
+       באנר ראשי - Sweet Shop
+    ===================================== */
+
+    .home-sweet-banner {
+      position: relative;
+      width: 100%;
+      margin: 30px auto 35px;
+      border-radius: 30px;
+      overflow: hidden;
+      background: #fbe8ed;
+      box-shadow: 0 15px 40px rgba(117, 50, 78, 0.14);
+    }
+
+    .home-sweet-banner img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    /* כפתור לחיץ מעל הכפתור שבתמונה */
+    .home-banner-link {
+      position: absolute;
+      left: 10%;
+      top: 75%;
+      width: 25%;
+      height: 13%;
+      z-index: 2;
+      border-radius: 50px;
+      cursor: pointer;
+    }
+
+    .home-banner-link:focus-visible {
+      outline: 3px solid #b43e70;
+      outline-offset: 3px;
+    }
+
+    /* התאמה למסכים קטנים */
+    @media (max-width: 700px) {
+      .home-sweet-banner {
+        margin: 18px auto 25px;
+        border-radius: 18px;
+      }
+
+      .home-banner-link {
+        left: 9%;
+        top: 75%;
+        width: 28%;
+        height: 15%;
+      }
+    }
+  </style>
+
 </head>
+
 <body>
 
 <header class="top">
   <nav class="nav">
-    <a class="logo" href="index.html"><span>🧁</span> Sweet Shop</a>
+
+    <a class="logo" href="index.html">
+      <span>🧁</span> Sweet Shop
+    </a>
+
     <a href="index.html">בית</a>
+
     <a href="products.html">מוצרים</a>
-    <a href="cart.html">🛒 סל (<span id="cart-count">0</span>)</a>
-    <span id="user-nav" style="display:flex;gap:12px;align-items:center;flex-wrap:wrap"></span>
+
+    <a href="cart.html">
+      🛒 סל (<span id="cart-count">0</span>)
+    </a>
+
+    <span
+      id="user-nav"
+      style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+    </span>
+
   </nav>
 </header>
 
 <main class="container">
 
-  <section class="hero">
-    <div class="hero-copy">
-      <p class="hero-eyebrow">WELCOME TO SWEET SHOP ♡</p>
-      <h1>Sweet Moments<br>Start Here</h1>
-      <p>עוגות, קינוחים ומארזים מיוחדים שנעשים באהבה.</p>
-      <a href="products.html" class="btn">לצפייה בכל המוצרים ←</a>
-    </div>
-    <div class="hero-art">🎂🍓</div>
+  <!-- =====================================
+       באנר ראשי באנגלית
+  ===================================== -->
+
+  <section
+    class="home-sweet-banner"
+    aria-label="Welcome to Sweet Shop"
+  >
+
+    <img
+      src="images/home-banner.png"
+      alt="Sweet Shop - Life is Sweeter Here"
+    >
+
+    <a
+      href="products.html"
+      class="home-banner-link"
+      aria-label="Shop Our Collection"
+      title="Shop Our Collection">
+    </a>
+
   </section>
+
+  <!-- =====================================
+       יתרונות החנות
+  ===================================== -->
 
   <div class="features">
     <span>🚚 משלוחים מהירים</span>
@@ -38,54 +127,100 @@
     <span>🎁 מארזים לאירועים</span>
   </div>
 
+  <!-- =====================================
+       היכרות עם החנות
+  ===================================== -->
+
   <section class="home-intro">
-    <p class="home-kicker">MADE WITH LOVE</p>
+
+    <p class="home-kicker">
+      MADE WITH LOVE
+    </p>
+
     <h2>כל רגע ראוי למשהו מתוק</h2>
-    <p>גלו עוגות, קינוחים ומארזי מתנה לכל אירוע.</p>
-    <a href="products.html" class="btn">לכל המוצרים</a>
+
+    <p>
+      גלו עוגות, קינוחים ומארזי מתנה לכל אירוע.
+    </p>
+
+    <a href="products.html" class="btn">
+      לכל המוצרים
+    </a>
+
   </section>
 
+  <!-- =====================================
+       קטגוריות מוצרים
+  ===================================== -->
+
   <section class="home-categories">
+
     <h2>מה מתחשק לכם היום?</h2>
 
     <div class="home-category-grid">
 
-      <a href="products.html?category=עוגות" class="home-category-card">
+      <a
+        href="products.html?category=עוגות"
+        class="home-category-card"
+      >
         <span>🎂</span>
         <h3>עוגות</h3>
         <p>עוגות לכל חגיגה</p>
       </a>
 
-      <a href="products.html?category=קינוחי כוסות" class="home-category-card">
+      <a
+        href="products.html?category=קינוחי כוסות"
+        class="home-category-card"
+      >
         <span>🧁</span>
         <h3>קינוחים אישיים</h3>
         <p>קינוחים מפנקים במנות אישיות</p>
       </a>
 
-      <a href="products.html?category=עוגיות" class="home-category-card">
+      <a
+        href="products.html?category=עוגיות"
+        class="home-category-card"
+      >
         <span>🍪</span>
         <h3>עוגיות</h3>
         <p>מקרונים ועוגיות מתוקות</p>
       </a>
 
-      <a href="products.html?category=מארזים" class="home-category-card">
+      <a
+        href="products.html?category=מארזים"
+        class="home-category-card"
+      >
         <span>🎁</span>
         <h3>מארזי מתנה</h3>
         <p>מארזים מיוחדים לכל אירוע</p>
       </a>
 
     </div>
+
   </section>
 
+  <!-- =====================================
+       קריאה לפעולה
+  ===================================== -->
+
   <section class="home-cta">
+
     <h2>מוכנים להזמין משהו מתוק?</h2>
+
     <p>בחרו את הקינוחים האהובים עליכם.</p>
-    <a href="products.html" class="btn">מעבר לחנות ←</a>
+
+    <a href="products.html" class="btn">
+      מעבר לחנות ←
+    </a>
+
   </section>
 
 </main>
 
-<footer class="footer">🧁 Sweet Shop · Made with love</footer>
+<footer class="footer">
+  🧁 Sweet Shop · Made with love
+</footer>
+
 <script src="js/common.js"></script>
 
 </body>

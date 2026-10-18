@@ -1,4 +1,9 @@
 
+/* =====================================
+   SWEET SHOP - SHOP.JS
+   תמונות לכל 19 המוצרים
+===================================== */
+
 const emojis = {
   chocolate: '🎂',
   cheese: '🍰',
@@ -19,6 +24,10 @@ const emojis = {
   minibox: '🎁'
 };
 
+/* =====================================
+   תמונות לפי הסמלים הישנים
+===================================== */
+
 const productImages = {
   chocolate: 'images/chocolate.jpg',
   cheese: 'images/cheese.jpg',
@@ -30,15 +39,127 @@ const productImages = {
   croissant: 'images/croissant.jpg',
   tiramisu: 'images/tiramisu.jpg',
   truffles: 'images/truffles.jpg',
-  lemon: 'images/lemon.jpg',
+  lemon: 'images/lemon-tart.jpg',
   cinnamon: 'images/cinnamon.jpg'
+};
+
+/* =====================================
+   תמונה נפרדת לכל אחד מ-19 המוצרים
+===================================== */
+
+const imagesByProductName = {
+
+  'טארט לימון ומרנג':
+    'images/lemon-tart.jpg',
+
+  'כדור שוקולד סוכריות':
+    'images/chocolate-ball.jpg',
+
+  'מארז טראפלס שוקולד':
+    'images/truffles-box.jpg',
+
+  'מארז יום הולדת מתוק':
+    'images/birthday-box.jpg',
+
+  'מארז מיני קינוחים':
+    'images/mini-desserts-box.jpg',
+
+  'מארז מקרונים צרפתיים':
+    'images/french-macarons-box.jpg',
+
+  'מארז מתנה חגיגי':
+    'images/gift-box.jpg',
+
+  'מארז עוגיות':
+    'images/cookies-box.jpg',
+
+  'מארז קאפקייקס':
+    'images/cupcakes-box.jpg',
+
+  'מארז קינוחים זוגי':
+    'images/couple-box.jpg',
+
+  'מארז רול קינמון':
+    'images/cinnamon-rolls.jpg',
+
+  'מארז שוקולד מפנק':
+    'images/chocolate-box.jpg',
+
+  'מיני עוגת גבינה':
+    'images/mini-cheesecake.jpg',
+
+  'מקרונים':
+    'images/macarons.jpg',
+
+  'עוגת גבינה':
+    'images/cheesecake.jpg',
+
+  'עוגת שוקולד':
+    'images/chocolate-cake.jpg',
+
+  'עוגת שיש':
+    'images/marble-cake.jpg',
+
+  'עוגת תותים':
+    'images/strawberry-cake.jpg',
+
+  'קרואסון פיסטוק':
+    'images/pistachio-croissant.jpg'
 };
 
 let currentProducts = [];
 
-// =====================================
-// התאמת שמות הקטגוריות
-// =====================================
+/* =====================================
+   בחירת תמונה למוצר
+===================================== */
+
+function getProductImage(product) {
+  const imageValue = String(
+    product.image || ''
+  ).trim();
+
+  const productName = String(
+    product.name || ''
+  ).trim();
+
+  // תמונה ייחודית לפי שם המוצר
+  if (imagesByProductName[productName]) {
+    return imagesByProductName[productName];
+  }
+
+  // קישור חיצוני לתמונה
+  if (/^https?:\/\/\S+$/i.test(imageValue)) {
+    return imageValue;
+  }
+
+  // נתיב מקומי מתוך מסד הנתונים
+  if (
+    imageValue.startsWith('images/') ||
+    imageValue.startsWith('/images/')
+  ) {
+    return imageValue;
+  }
+
+  // תמונה לפי הסמל הישן
+  return productImages[imageValue] || '';
+}
+
+/* =====================================
+   הגנה על ערכים בתוך HTML
+===================================== */
+
+function escapeImageAttribute(value) {
+  return String(value || '')
+    .replace(/&/g, '&amp;')
+    .replace(/"/g, '&quot;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/'/g, '&#39;');
+}
+
+/* =====================================
+   התאמת קטגוריות
+===================================== */
 
 function normalizeCategory(value) {
   const category = String(value ?? '')
@@ -87,9 +208,9 @@ function normalizeCategory(value) {
   return aliases[category] || category;
 }
 
-// =====================================
-// תגית מלאי
-// =====================================
+/* =====================================
+   תגית מלאי
+===================================== */
 
 function getStockBadge(stock) {
   if (stock === 0) {
@@ -115,9 +236,9 @@ function getStockBadge(stock) {
   `;
 }
 
-// =====================================
-// הצגת מוצרים
-// =====================================
+/* =====================================
+   הצגת מוצרים
+===================================== */
 
 function renderProducts(products) {
   const container = $('#product-list');
@@ -126,9 +247,15 @@ function renderProducts(products) {
 
   container.innerHTML = products.length
     ? products.map(p => {
-        const image = productImages[p.image];
-        const emoji = emojis[p.image] || '🎁';
-        const stock = Math.max(0, Number(p.inStock) || 0);
+
+        const image = getProductImage(p);
+
+        const emoji = emojis[p.image] || '🍰';
+
+        const stock = Math.max(
+          0,
+          Number(p.inStock) || 0
+        );
 
         return `
           <article class="product">
@@ -138,16 +265,21 @@ function renderProducts(products) {
                 image
                   ? `
                     <img
-                      src="${image}"
-                      alt="${escapeHtml(p.name)}"
+                      src="${escapeImageAttribute(image)}"
+                      alt="${escapeImageAttribute(p.name)}"
                       loading="lazy"
                       onerror="this.hidden=true;this.nextElementSibling.hidden=false"
                     >
+
                     <span class="dessert-fallback" hidden>
                       ${emoji}
                     </span>
                   `
-                  : `<span>${emoji}</span>`
+                  : `
+                    <span class="dessert-fallback">
+                      ${emoji}
+                    </span>
+                  `
               }
             </div>
 
@@ -163,7 +295,11 @@ function renderProducts(products) {
               ${money(p.price)}
             </div>
 
-            <p class="${stock > 0 ? 'stock-available' : 'stock-empty'}">
+            <p class="${
+              stock > 0
+                ? 'stock-available'
+                : 'stock-empty'
+            }">
               ${
                 stock > 0
                   ? `במלאי: ${stock} יחידות`
@@ -176,7 +312,7 @@ function renderProducts(products) {
                 ? `
                   <button
                     class="btn"
-                    data-add="${escapeHtml(p._id)}"
+                    data-add="${escapeImageAttribute(p._id)}"
                   >
                     הוסף לסל 🛒
                   </button>
@@ -193,8 +329,12 @@ function renderProducts(products) {
       }).join('')
     : 'לא נמצאו מוצרים בקטגוריה זו';
 
-  // הוספה לסל תוך בדיקת מלאי
+  /* =====================================
+     הוספה לסל עם בדיקת מלאי
+  ===================================== */
+
   document.querySelectorAll('[data-add]').forEach(button => {
+
     button.onclick = async () => {
       button.disabled = true;
 
@@ -234,6 +374,7 @@ function renderProducts(products) {
 
       } catch (error) {
         notify(error.message);
+
       } finally {
         button.disabled = false;
       }
@@ -241,9 +382,9 @@ function renderProducts(products) {
   });
 }
 
-// =====================================
-// סינון ומיון מוצרים
-// =====================================
+/* =====================================
+   סינון ומיון מוצרים
+===================================== */
 
 function filterAndSortProducts() {
   const categorySelect = $('#category');
@@ -259,22 +400,28 @@ function filterAndSortProducts() {
 
   let products = [...currentProducts];
 
-  // סינון לפי קטגוריה
-  if (selectedCategory !== 'all' && selectedCategory !== '') {
+  if (
+    selectedCategory !== 'all' &&
+    selectedCategory !== ''
+  ) {
     products = products.filter(p =>
-      normalizeCategory(p.category) === selectedCategory
+      normalizeCategory(p.category) ===
+      selectedCategory
     );
   }
 
-  // מיון לפי מחיר או שם
   if (selectedSort === 'priceAsc') {
     products.sort(
-      (a, b) => Number(a.price) - Number(b.price)
+      (a, b) =>
+        Number(a.price) - Number(b.price)
     );
+
   } else if (selectedSort === 'priceDesc') {
     products.sort(
-      (a, b) => Number(b.price) - Number(a.price)
+      (a, b) =>
+        Number(b.price) - Number(a.price)
     );
+
   } else {
     products.sort((a, b) =>
       String(a.name || '').localeCompare(
@@ -287,41 +434,52 @@ function filterAndSortProducts() {
   renderProducts(products);
 }
 
-// =====================================
-// טעינת כל המוצרים מהשרת
-// =====================================
+/* =====================================
+   טעינת מוצרים מהשרת
+===================================== */
 
 async function loadProducts() {
   try {
     const data = await api('/api/products');
 
     if (!Array.isArray(data)) {
-      throw new Error('התקבלה תשובה לא תקינה מהשרת');
+      throw new Error(
+        'התקבלה תשובה לא תקינה מהשרת'
+      );
     }
 
     currentProducts = data;
+
     filterAndSortProducts();
 
   } catch (error) {
-    console.error('Products loading error:', error);
+    console.error(
+      'Products loading error:',
+      error
+    );
+
     notify(error.message);
   }
 }
 
-// =====================================
-// קטגוריה שמגיעה מקישור בדף הבית
-// =====================================
+/* =====================================
+   קטגוריה שמגיעה מקישור בדף הבית
+===================================== */
 
-const params = new URLSearchParams(window.location.search);
+const params = new URLSearchParams(
+  window.location.search
+);
+
 const selectedCategory = params.get('category');
 
 const categorySelect = $('#category');
 
 if (selectedCategory && categorySelect) {
-  const matchingOption = [...categorySelect.options].find(
-    option =>
-      normalizeCategory(option.value) ===
-      normalizeCategory(selectedCategory)
+  const matchingOption = [
+    ...categorySelect.options
+  ].find(option =>
+    normalizeCategory(option.value) ===
+    normalizeCategory(selectedCategory)
   );
 
   if (matchingOption) {
@@ -329,9 +487,9 @@ if (selectedCategory && categorySelect) {
   }
 }
 
-// =====================================
-// שינוי מיון
-// =====================================
+/* =====================================
+   שינוי מיון
+===================================== */
 
 const sortSelect = $('#sort');
 
@@ -339,40 +497,62 @@ if (sortSelect) {
   sortSelect.onchange = filterAndSortProducts;
 }
 
-// =====================================
-// שינוי קטגוריה
-// =====================================
+/* =====================================
+   שינוי קטגוריה
+===================================== */
 
 if (categorySelect) {
   categorySelect.onchange = () => {
     const category = categorySelect.value;
-    const url = new URL(window.location.href);
 
-    if (normalizeCategory(category) === 'all') {
+    const url = new URL(
+      window.location.href
+    );
+
+    if (
+      normalizeCategory(category) === 'all'
+    ) {
       url.searchParams.delete('category');
+
     } else {
-      url.searchParams.set('category', category);
+      url.searchParams.set(
+        'category',
+        category
+      );
     }
 
-    window.history.replaceState({}, '', url);
+    window.history.replaceState(
+      {},
+      '',
+      url
+    );
 
     filterAndSortProducts();
   };
 }
 
-// טעינה ראשונית
+/* =====================================
+   טעינה ראשונית
+===================================== */
+
 loadProducts();
 
-// רענון מוצרים ומלאי כשחוזרים לעמוד
-document.addEventListener('visibilitychange', () => {
-  if (!document.hidden) {
-    loadProducts();
-  }
-});
+/* =====================================
+   רענון מוצרים ומלאי
+===================================== */
 
-// =====================================
-// API מזג אוויר
-// =====================================
+document.addEventListener(
+  'visibilitychange',
+  () => {
+    if (!document.hidden) {
+      loadProducts();
+    }
+  }
+);
+
+/* =====================================
+   API מזג אוויר
+===================================== */
 
 api('/api/weather')
   .then(data => {
@@ -392,9 +572,9 @@ api('/api/weather')
     }
   });
 
-// =====================================
-// API המרת מטבעות
-// =====================================
+/* =====================================
+   API המרת מטבעות
+===================================== */
 
 api('/api/currency')
   .then(data => {
