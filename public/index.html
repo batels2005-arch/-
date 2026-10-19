@@ -4,16 +4,13 @@
 
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Sweet Shop | דף הבית</title>
-
   <link rel="stylesheet" href="css/style.css">
 
   <style>
-    /* =====================================
-       באנר ראשי - Sweet Shop
-    ===================================== */
+    /* באנר ראשי */
 
     .home-sweet-banner {
       position: relative;
@@ -31,7 +28,6 @@
       height: auto;
     }
 
-    /* כפתור לחיץ מעל הכפתור שבתמונה */
     .home-banner-link {
       position: absolute;
       left: 10%;
@@ -48,8 +44,102 @@
       outline-offset: 3px;
     }
 
-    /* התאמה למסכים קטנים */
-    @media (max-width: 700px) {
+    /* קטגוריות */
+
+    .sweet-categories {
+      padding: 45px 0;
+      text-align: center;
+    }
+
+    .sweet-categories h2 {
+      color: #842640;
+      font-size: clamp(26px, 3vw, 38px);
+      margin: 0 0 32px;
+      font-weight: 800;
+    }
+
+    .sweet-categories .home-category-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .sweet-categories .home-category-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 0 25px;
+      background: #fff;
+      border: 1px solid #f5dbe3;
+      border-radius: 25px;
+      overflow: hidden;
+      text-decoration: none;
+      box-shadow: 0 12px 30px rgba(130, 40, 70, 0.08);
+      transition: transform .3s ease, box-shadow .3s ease;
+    }
+
+    .sweet-categories .home-category-card:hover {
+      transform: translateY(-7px);
+      box-shadow: 0 20px 40px rgba(130, 40, 70, 0.16);
+    }
+
+    .sweet-categories .home-category-card img {
+      display: block;
+      width: 100%;
+      height: 230px;
+      object-fit: cover;
+      border-radius: 0;
+      margin: 0 0 20px;
+      transition: transform .4s ease;
+    }
+
+    .sweet-categories .home-category-card:hover img {
+      transform: scale(1.035);
+    }
+
+    .sweet-categories .home-category-card h3 {
+      color: #842640;
+      font-size: 23px;
+      font-weight: 800;
+      margin: 0 12px 10px;
+    }
+
+    .sweet-categories .home-category-card p {
+      color: #936a78;
+      font-size: 15px;
+      line-height: 1.6;
+      margin: 0 15px 20px;
+    }
+
+    .sweet-categories .category-arrow {
+      display: grid;
+      place-items: center;
+      width: 50px;
+      height: 50px;
+      margin-top: auto;
+      border-radius: 50%;
+      background: #ffe1e9;
+      color: #a52e58;
+      font-size: 25px;
+      transition: background .3s ease, color .3s ease;
+    }
+
+    .sweet-categories .home-category-card:hover .category-arrow {
+      background: #b43e70;
+      color: #fff;
+    }
+
+    @media (max-width: 950px) {
+      .sweet-categories .home-category-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .sweet-categories .home-category-card img {
+        height: 220px;
+      }
+    }
+
+    @media (max-width: 600px) {
       .home-sweet-banner {
         margin: 18px auto 25px;
         border-radius: 18px;
@@ -61,9 +151,48 @@
         width: 28%;
         height: 15%;
       }
+
+      .sweet-categories {
+        padding: 30px 0;
+      }
+
+      .sweet-categories h2 {
+        font-size: 25px;
+        margin-bottom: 24px;
+      }
+
+      .sweet-categories .home-category-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .sweet-categories .home-category-card {
+        border-radius: 18px;
+        padding-bottom: 18px;
+      }
+
+      .sweet-categories .home-category-card img {
+        height: 145px;
+        margin-bottom: 14px;
+      }
+
+      .sweet-categories .home-category-card h3 {
+        font-size: 17px;
+        margin-bottom: 8px;
+      }
+
+      .sweet-categories .home-category-card p {
+        font-size: 12px;
+        margin: 0 10px 14px;
+      }
+
+      .sweet-categories .category-arrow {
+        width: 38px;
+        height: 38px;
+        font-size: 20px;
+      }
     }
   </style>
-
 </head>
 
 <body>
@@ -76,7 +205,6 @@
     </a>
 
     <a href="index.html">בית</a>
-
     <a href="products.html">מוצרים</a>
 
     <a href="cart.html">
@@ -93,19 +221,15 @@
 
 <main class="container">
 
-  <!-- =====================================
-       באנר ראשי באנגלית
-  ===================================== -->
+  <!-- באנר באנגלית -->
 
   <section
     class="home-sweet-banner"
-    aria-label="Welcome to Sweet Shop"
-  >
+    aria-label="Welcome to Sweet Shop">
 
     <img
       src="images/home-banner.png"
-      alt="Sweet Shop - Life is Sweeter Here"
-    >
+      alt="Sweet Shop - Life is Sweeter Here">
 
     <a
       href="products.html"
@@ -116,9 +240,7 @@
 
   </section>
 
-  <!-- =====================================
-       יתרונות החנות
-  ===================================== -->
+  <!-- יתרונות החנות -->
 
   <div class="features">
     <span>🚚 משלוחים מהירים</span>
@@ -127,84 +249,110 @@
     <span>🎁 מארזים לאירועים</span>
   </div>
 
-  <!-- =====================================
-       היכרות עם החנות
-  ===================================== -->
+  <!-- היכרות עם החנות -->
 
   <section class="home-intro">
-
-    <p class="home-kicker">
-      MADE WITH LOVE
-    </p>
+    <p class="home-kicker">MADE WITH LOVE</p>
 
     <h2>כל רגע ראוי למשהו מתוק</h2>
 
-    <p>
-      גלו עוגות, קינוחים ומארזי מתנה לכל אירוע.
-    </p>
+    <p>גלו עוגות, קינוחים ומארזי מתנה לכל אירוע.</p>
 
     <a href="products.html" class="btn">
       לכל המוצרים
     </a>
-
   </section>
 
-  <!-- =====================================
-       קטגוריות מוצרים
-  ===================================== -->
+  <!-- קטגוריות -->
 
-  <section class="home-categories">
+  <section class="home-categories sweet-categories">
 
-    <h2>מה מתחשק לכם היום?</h2>
+    <h2>♡ מה מתחשק לכם היום? ♡</h2>
 
     <div class="home-category-grid">
 
-      <a
-        href="products.html?category=עוגות"
-        class="home-category-card"
-      >
-        <span>🎂</span>
-        <h3>עוגות</h3>
-        <p>עוגות לכל חגיגה</p>
-      </a>
+      <!-- עוגות -->
 
       <a
-        href="products.html?category=קינוחי כוסות"
-        class="home-category-card"
-      >
-        <span>🧁</span>
+        href="products.html?category=עוגות"
+        class="home-category-card">
+
+        <img
+          src="images/category-cakes.jpg"
+          alt="עוגת תותים מעוצבת"
+          loading="lazy">
+
+        <h3>עוגות</h3>
+        <p>עוגות לכל חגיגה</p>
+
+        <span class="category-arrow" aria-hidden="true">
+          ←
+        </span>
+      </a>
+
+      <!-- קינוחים אישיים -->
+
+      <a
+        href="products.html?category=אישיים"
+        class="home-category-card">
+
+        <img
+          src="images/category-desserts.jpg"
+          alt="קאפקייקס וקינוחים אישיים"
+          loading="lazy">
+
         <h3>קינוחים אישיים</h3>
         <p>קינוחים מפנקים במנות אישיות</p>
+
+        <span class="category-arrow" aria-hidden="true">
+          ←
+        </span>
       </a>
+
+      <!-- עוגיות -->
 
       <a
         href="products.html?category=עוגיות"
-        class="home-category-card"
-      >
-        <span>🍪</span>
+        class="home-category-card">
+
+        <img
+          src="images/category-cookies.jpg"
+          alt="מקרונים צבעוניים"
+          loading="lazy">
+
         <h3>עוגיות</h3>
         <p>מקרונים ועוגיות מתוקות</p>
+
+        <span class="category-arrow" aria-hidden="true">
+          ←
+        </span>
       </a>
+
+      <!-- מארזים -->
 
       <a
         href="products.html?category=מארזים"
-        class="home-category-card"
-      >
-        <span>🎁</span>
+        class="home-category-card">
+
+        <img
+          src="images/category-gifts.jpg"
+          alt="מארז קינוחים חגיגי"
+          loading="lazy">
+
         <h3>מארזי מתנה</h3>
         <p>מארזים מיוחדים לכל אירוע</p>
+
+        <span class="category-arrow" aria-hidden="true">
+          ←
+        </span>
       </a>
 
     </div>
-
   </section>
 
-  <!-- =====================================
-       קריאה לפעולה
-  ===================================== -->
+  <!-- מעבר לחנות -->
 
   <section class="home-cta">
-
     <h2>מוכנים להזמין משהו מתוק?</h2>
 
     <p>בחרו את הקינוחים האהובים עליכם.</p>
@@ -212,7 +360,6 @@
     <a href="products.html" class="btn">
       מעבר לחנות ←
     </a>
-
   </section>
 
 </main>

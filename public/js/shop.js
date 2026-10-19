@@ -1,7 +1,7 @@
 
 /* =====================================
    SWEET SHOP - SHOP.JS
-   תמונות לכל 19 המוצרים
+   תמונות, קטגוריות, מלאי וסל קניות
 ===================================== */
 
 const emojis = {
@@ -24,9 +24,7 @@ const emojis = {
   minibox: '🎁'
 };
 
-/* =====================================
-   תמונות לפי הסמלים הישנים
-===================================== */
+/* תמונות לפי סמלי המוצרים הישנים */
 
 const productImages = {
   chocolate: 'images/chocolate.jpg',
@@ -43,96 +41,48 @@ const productImages = {
   cinnamon: 'images/cinnamon.jpg'
 };
 
-/* =====================================
-   תמונה נפרדת לכל אחד מ-19 המוצרים
-===================================== */
+/* תמונות ייחודיות לכל 19 המוצרים */
 
 const imagesByProductName = {
-
-  'טארט לימון ומרנג':
-    'images/lemon-tart.jpg',
-
-  'כדור שוקולד סוכריות':
-    'images/chocolate-ball.jpg',
-
-  'מארז טראפלס שוקולד':
-    'images/truffles-box.jpg',
-
-  'מארז יום הולדת מתוק':
-    'images/birthday-box.jpg',
-
-  'מארז מיני קינוחים':
-    'images/mini-desserts-box.jpg',
-
-  'מארז מקרונים צרפתיים':
-    'images/french-macarons-box.jpg',
-
-  'מארז מתנה חגיגי':
-    'images/gift-box.jpg',
-
-  'מארז עוגיות':
-    'images/cookies-box.jpg',
-
-  'מארז קאפקייקס':
-    'images/cupcakes-box.jpg',
-
-  'מארז קינוחים זוגי':
-    'images/couple-box.jpg',
-
-  'מארז רול קינמון':
-    'images/cinnamon-rolls.jpg',
-
-  'מארז שוקולד מפנק':
-    'images/chocolate-box.jpg',
-
-  'מיני עוגת גבינה':
-    'images/mini-cheesecake.jpg',
-
-  'מקרונים':
-    'images/macarons.jpg',
-
-  'עוגת גבינה':
-    'images/cheesecake.jpg',
-
-  'עוגת שוקולד':
-    'images/chocolate-cake.jpg',
-
-  'עוגת שיש':
-    'images/marble-cake.jpg',
-
-  'עוגת תותים':
-    'images/strawberry-cake.jpg',
-
-  'קרואסון פיסטוק':
-    'images/pistachio-croissant.jpg'
+  'טארט לימון ומרנג': 'images/lemon-tart.jpg',
+  'כדור שוקולד סוכריות': 'images/chocolate-ball.jpg',
+  'מארז טראפלס שוקולד': 'images/truffles-box.jpg',
+  'מארז יום הולדת מתוק': 'images/birthday-box.jpg',
+  'מארז מיני קינוחים': 'images/mini-desserts-box.jpg',
+  'מארז מקרונים צרפתיים': 'images/french-macarons-box.jpg',
+  'מארז מתנה חגיגי': 'images/gift-box.jpg',
+  'מארז עוגיות': 'images/cookies-box.jpg',
+  'מארז קאפקייקס': 'images/cupcakes-box.jpg',
+  'מארז קינוחים זוגי': 'images/couple-box.jpg',
+  'מארז רול קינמון': 'images/cinnamon-rolls.jpg',
+  'מארז שוקולד מפנק': 'images/chocolate-box.jpg',
+  'מיני עוגת גבינה': 'images/mini-cheesecake.jpg',
+  'מקרונים': 'images/macarons.jpg',
+  'עוגת גבינה': 'images/cheesecake.jpg',
+  'עוגת שוקולד': 'images/chocolate-cake.jpg',
+  'עוגת שיש': 'images/marble-cake.jpg',
+  'עוגת תותים': 'images/strawberry-cake.jpg',
+  'קרואסון פיסטוק': 'images/pistachio-croissant.jpg'
 };
 
 let currentProducts = [];
 
 /* =====================================
-   בחירת תמונה למוצר
+   בחירת תמונה
 ===================================== */
 
 function getProductImage(product) {
-  const imageValue = String(
-    product.image || ''
-  ).trim();
+  const imageValue = String(product.image || '').trim();
+  const productName = String(product.name || '').trim();
 
-  const productName = String(
-    product.name || ''
-  ).trim();
-
-  // תמונה ייחודית לפי שם המוצר
   if (imagesByProductName[productName]) {
     return imagesByProductName[productName];
   }
 
-  // קישור חיצוני לתמונה
   if (/^https?:\/\/\S+$/i.test(imageValue)) {
     return imageValue;
   }
 
-  // נתיב מקומי מתוך מסד הנתונים
   if (
     imageValue.startsWith('images/') ||
     imageValue.startsWith('/images/')
@@ -140,12 +90,11 @@ function getProductImage(product) {
     return imageValue;
   }
 
-  // תמונה לפי הסמל הישן
   return productImages[imageValue] || '';
 }
 
 /* =====================================
-   הגנה על ערכים בתוך HTML
+   הגנה על טקסט בתוך HTML
 ===================================== */
 
 function escapeImageAttribute(value) {
@@ -193,6 +142,10 @@ function normalizeCategory(value) {
     'cup desserts': 'cup-desserts',
     'cup-desserts': 'cup-desserts',
 
+    'אישיים': 'personal-desserts',
+    'קינוחים אישיים': 'personal-desserts',
+    'personal-desserts': 'personal-desserts',
+
     'שוקולדים': 'chocolates',
     'שוקולד': 'chocolates',
     'chocolate': 'chocolates',
@@ -206,6 +159,25 @@ function normalizeCategory(value) {
   };
 
   return aliases[category] || category;
+}
+
+/* =====================================
+   זיהוי קינוחים אישיים
+===================================== */
+
+function isPersonalDessert(product) {
+  const name = String(product.name || '').trim();
+  const category = normalizeCategory(product.category);
+
+  return (
+    category === 'cupcakes' ||
+    category === 'cup-desserts' ||
+    category === 'personal-desserts' ||
+    name.includes('קאפקייק') ||
+    name.includes('מיני עוגת גבינה') ||
+    name.includes('מיני קינוחים') ||
+    name.includes('קינוחים זוגי')
+  );
 }
 
 /* =====================================
@@ -247,9 +219,7 @@ function renderProducts(products) {
 
   container.innerHTML = products.length
     ? products.map(p => {
-
         const image = getProductImage(p);
-
         const emoji = emojis[p.image] || '🍰';
 
         const stock = Math.max(
@@ -329,12 +299,9 @@ function renderProducts(products) {
       }).join('')
     : 'לא נמצאו מוצרים בקטגוריה זו';
 
-  /* =====================================
-     הוספה לסל עם בדיקת מלאי
-  ===================================== */
+  /* הוספה לסל עם בדיקת מלאי */
 
   document.querySelectorAll('[data-add]').forEach(button => {
-
     button.onclick = async () => {
       button.disabled = true;
 
@@ -342,7 +309,7 @@ function renderProducts(products) {
         const latest = await api('/api/products');
 
         const product = latest.find(
-          p => p._id === button.dataset.add
+          p => String(p._id) === button.dataset.add
         );
 
         if (!product) {
@@ -353,7 +320,7 @@ function renderProducts(products) {
         const cart = getCart();
 
         const existing = cart.find(
-          x => x.productId === product._id
+          x => String(x.productId) === String(product._id)
         );
 
         const quantity = existing
@@ -390,6 +357,16 @@ function filterAndSortProducts() {
   const categorySelect = $('#category');
   const sortSelect = $('#sort');
 
+  const urlParams = new URLSearchParams(
+    window.location.search
+  );
+
+  const categoryFromUrl = urlParams.get('category');
+
+  const isPersonalCategory =
+    normalizeCategory(categoryFromUrl) ===
+    'personal-desserts';
+
   const selectedCategory = categorySelect
     ? normalizeCategory(categorySelect.value)
     : 'all';
@@ -400,10 +377,16 @@ function filterAndSortProducts() {
 
   let products = [...currentProducts];
 
-  if (
+  if (isPersonalCategory) {
+
+    // מציג מוצרים אישיים מתוך המוצרים הקיימים
+    products = products.filter(isPersonalDessert);
+
+  } else if (
     selectedCategory !== 'all' &&
     selectedCategory !== ''
   ) {
+
     products = products.filter(p =>
       normalizeCategory(p.category) ===
       selectedCategory
@@ -411,18 +394,21 @@ function filterAndSortProducts() {
   }
 
   if (selectedSort === 'priceAsc') {
+
     products.sort(
       (a, b) =>
         Number(a.price) - Number(b.price)
     );
 
   } else if (selectedSort === 'priceDesc') {
+
     products.sort(
       (a, b) =>
         Number(b.price) - Number(a.price)
     );
 
   } else {
+
     products.sort((a, b) =>
       String(a.name || '').localeCompare(
         String(b.name || ''),
@@ -453,17 +439,13 @@ async function loadProducts() {
     filterAndSortProducts();
 
   } catch (error) {
-    console.error(
-      'Products loading error:',
-      error
-    );
-
+    console.error('Products loading error:', error);
     notify(error.message);
   }
 }
 
 /* =====================================
-   קטגוריה שמגיעה מקישור בדף הבית
+   סנכרון קטגוריה מהקישור
 ===================================== */
 
 const params = new URLSearchParams(
@@ -471,19 +453,39 @@ const params = new URLSearchParams(
 );
 
 const selectedCategory = params.get('category');
-
 const categorySelect = $('#category');
 
-if (selectedCategory && categorySelect) {
-  const matchingOption = [
+if (categorySelect) {
+
+  // הוספת אפשרות "קינוחים אישיים" לרשימה
+  const personalOptionExists = [
     ...categorySelect.options
-  ].find(option =>
+  ].some(option =>
     normalizeCategory(option.value) ===
-    normalizeCategory(selectedCategory)
+    'personal-desserts'
   );
 
-  if (matchingOption) {
-    categorySelect.value = matchingOption.value;
+  if (!personalOptionExists) {
+    const personalOption = document.createElement('option');
+
+    personalOption.value = 'אישיים';
+    personalOption.textContent = 'קינוחים אישיים';
+
+    categorySelect.appendChild(personalOption);
+  }
+
+  // בחירת הקטגוריה המתאימה לקישור
+  if (selectedCategory) {
+    const matchingOption = [
+      ...categorySelect.options
+    ].find(option =>
+      normalizeCategory(option.value) ===
+      normalizeCategory(selectedCategory)
+    );
+
+    if (matchingOption) {
+      categorySelect.value = matchingOption.value;
+    }
   }
 }
 
@@ -505,27 +507,15 @@ if (categorySelect) {
   categorySelect.onchange = () => {
     const category = categorySelect.value;
 
-    const url = new URL(
-      window.location.href
-    );
+    const url = new URL(window.location.href);
 
-    if (
-      normalizeCategory(category) === 'all'
-    ) {
+    if (normalizeCategory(category) === 'all') {
       url.searchParams.delete('category');
-
     } else {
-      url.searchParams.set(
-        'category',
-        category
-      );
+      url.searchParams.set('category', category);
     }
 
-    window.history.replaceState(
-      {},
-      '',
-      url
-    );
+    window.history.replaceState({}, '', url);
 
     filterAndSortProducts();
   };
@@ -538,20 +528,17 @@ if (categorySelect) {
 loadProducts();
 
 /* =====================================
-   רענון מוצרים ומלאי
+   רענון מלאי כשחוזרים לדף
 ===================================== */
 
-document.addEventListener(
-  'visibilitychange',
-  () => {
-    if (!document.hidden) {
-      loadProducts();
-    }
+document.addEventListener('visibilitychange', () => {
+  if (!document.hidden) {
+    loadProducts();
   }
-);
+});
 
 /* =====================================
-   API מזג אוויר
+   מזג אוויר
 ===================================== */
 
 api('/api/weather')
@@ -573,7 +560,7 @@ api('/api/weather')
   });
 
 /* =====================================
-   API המרת מטבעות
+   שער דולר
 ===================================== */
 
 api('/api/currency')
