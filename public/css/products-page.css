@@ -1,0 +1,49 @@
+
+    /* הבאנר החדש של הקינוחים */
+    .sweet-banner {
+      position: relative;
+      width: 100%;
+      margin: 30px auto 36px;
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: 0 15px 40px rgba(117, 50, 78, 0.12);
+      background: #fbe8ed;
+    }
+
+    .sweet-banner img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    /* אזור לחיץ מעל הכפתור שמצויר בתמונה */
+    .sweet-banner-link {
+      position: absolute;
+      left: 4.5%;
+      top: 67%;
+      width: 25%;
+      height: 17%;
+      z-index: 2;
+      border-radius: 50px;
+      cursor: pointer;
+    }
+
+    .sweet-banner-link:focus-visible {
+      outline: 3px solid #b43e70;
+      outline-offset: 3px;
+    }
+
+    @media (max-width: 700px) {
+      .sweet-banner {
+        margin: 18px auto 24px;
+        border-radius: 18px;
+      }
+
+      .sweet-banner-link {
+        left: 4%;
+        top: 67%;
+        width: 28%;
+        height: 18%;
+      }
+    }
+  

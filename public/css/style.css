@@ -1109,3 +1109,15 @@ th, td {
     transition: none;
   }
 }
+
+/* Shared navigation and authentication styles */
+.user-nav-links {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.auth-link {
+    color: #d94f77;
+}

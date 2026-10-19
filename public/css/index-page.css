@@ -1,0 +1,184 @@
+
+    /* באנר ראשי */
+
+    .home-sweet-banner {
+      position: relative;
+      width: 100%;
+      margin: 30px auto 35px;
+      border-radius: 30px;
+      overflow: hidden;
+      background: #fbe8ed;
+      box-shadow: 0 15px 40px rgba(117, 50, 78, 0.14);
+    }
+
+    .home-sweet-banner img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .home-banner-link {
+      position: absolute;
+      left: 10%;
+      top: 75%;
+      width: 25%;
+      height: 13%;
+      z-index: 2;
+      border-radius: 50px;
+      cursor: pointer;
+    }
+
+    .home-banner-link:focus-visible {
+      outline: 3px solid #b43e70;
+      outline-offset: 3px;
+    }
+
+    /* קטגוריות */
+
+    .sweet-categories {
+      padding: 45px 0;
+      text-align: center;
+    }
+
+    .sweet-categories h2 {
+      color: #842640;
+      font-size: clamp(26px, 3vw, 38px);
+      margin: 0 0 32px;
+      font-weight: 800;
+    }
+
+    .sweet-categories .home-category-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .sweet-categories .home-category-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 0 25px;
+      background: #fff;
+      border: 1px solid #f5dbe3;
+      border-radius: 25px;
+      overflow: hidden;
+      text-decoration: none;
+      box-shadow: 0 12px 30px rgba(130, 40, 70, 0.08);
+      transition: transform .3s ease, box-shadow .3s ease;
+    }
+
+    .sweet-categories .home-category-card:hover {
+      transform: translateY(-7px);
+      box-shadow: 0 20px 40px rgba(130, 40, 70, 0.16);
+    }
+
+    .sweet-categories .home-category-card img {
+      display: block;
+      width: 100%;
+      height: 230px;
+      object-fit: cover;
+      border-radius: 0;
+      margin: 0 0 20px;
+      transition: transform .4s ease;
+    }
+
+    .sweet-categories .home-category-card:hover img {
+      transform: scale(1.035);
+    }
+
+    .sweet-categories .home-category-card h3 {
+      color: #842640;
+      font-size: 23px;
+      font-weight: 800;
+      margin: 0 12px 10px;
+    }
+
+    .sweet-categories .home-category-card p {
+      color: #936a78;
+      font-size: 15px;
+      line-height: 1.6;
+      margin: 0 15px 20px;
+    }
+
+    .sweet-categories .category-arrow {
+      display: grid;
+      place-items: center;
+      width: 50px;
+      height: 50px;
+      margin-top: auto;
+      border-radius: 50%;
+      background: #ffe1e9;
+      color: #a52e58;
+      font-size: 25px;
+      transition: background .3s ease, color .3s ease;
+    }
+
+    .sweet-categories .home-category-card:hover .category-arrow {
+      background: #b43e70;
+      color: #fff;
+    }
+
+    @media (max-width: 950px) {
+      .sweet-categories .home-category-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .sweet-categories .home-category-card img {
+        height: 220px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .home-sweet-banner {
+        margin: 18px auto 25px;
+        border-radius: 18px;
+      }
+
+      .home-banner-link {
+        left: 9%;
+        top: 75%;
+        width: 28%;
+        height: 15%;
+      }
+
+      .sweet-categories {
+        padding: 30px 0;
+      }
+
+      .sweet-categories h2 {
+        font-size: 25px;
+        margin-bottom: 24px;
+      }
+
+      .sweet-categories .home-category-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .sweet-categories .home-category-card {
+        border-radius: 18px;
+        padding-bottom: 18px;
+      }
+
+      .sweet-categories .home-category-card img {
+        height: 145px;
+        margin-bottom: 14px;
+      }
+
+      .sweet-categories .home-category-card h3 {
+        font-size: 17px;
+        margin-bottom: 8px;
+      }
+
+      .sweet-categories .home-category-card p {
+        font-size: 12px;
+        margin: 0 10px 14px;
+      }
+
+      .sweet-categories .category-arrow {
+        width: 38px;
+        height: 38px;
+        font-size: 20px;
+      }
+    }
+  
